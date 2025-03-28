@@ -88,41 +88,41 @@ export const items = [
         name: 'AMD RYZEN 7 5700X NVIDIA RTX 4060 8G',
         brand: 'TECHLIFE', 
         specs: 'BASIC',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
     {
         id: 'AMD-RYZEN-7-5700X-NVIDIA-RTX-4060-8G-DUOFACEPRO',
         name: 'AMD RYZEN 7 5700X NVIDIA RTX 4060 8G P',
         brand: 'TECHLIFE', 
         specs: 'BASIC',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
     {
         id: 'AMD-RYZEN-7-5700X-NVIDIA-RTX-4060TI-8G',
         name: 'AMD RYZEN 7 5700X NVIDIA RTX 4060TI 8G',
         brand: 'TECHLIFE', 
         specs: 'MEDIUM',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
     {
         id: 'AMD-RYZEN-7-7700-NVIDIA-RTX-4070-SUPER-12G',
         name: 'AMD RYZEN 7 7700 NVIDIA RTX 4070S 12G',
         brand: 'TECHLIFE', 
         specs: 'HIGH END',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
     {
         id: 'COOLER-MASTER-TD500MESH-V2-BLACK',
         name: 'RYZEN 7 7800X3D NVIDIA RTX 4080S 16G',
         brand: 'TECHLIFE', 
         specs: 'HIGH END',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
     {
         id: 'COOLER-MASTER-TD500MESH-V2-WHITE',
         name: 'AMD RYZEN 7 7800X3D NVIDIA RTX 4090',
         brand: 'TECHLIFE', 
         specs: 'HIGH END',
-        type: 'PCGAMER'
+        type: 'COMPUTERS'
     },
 ]

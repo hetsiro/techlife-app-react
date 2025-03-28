@@ -1,4 +1,4 @@
 export const types = {
-    computers: 'PCGAMER',
+    computers: 'COMPUTERS',
     hardware: 'HARDWARE'
 }

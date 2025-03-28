@@ -7,13 +7,14 @@ import { useForm } from '../hooks/useForm';
 import { Alert, Button, Grid2, TextField, Typography } from '@mui/material'
 import FaceIcon from '@mui/icons-material/Face';
 import { useSnackbar } from 'notistack';
+import { validateForms } from '../helpers/validators';
 
 
 export const RegisterPage = () => {
 
-  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+={}\[\]:;"'<>,.?/-]).{8,}$/;
+  const { validatePassword } = validateForms();
 
-  const { register } = useContext( AuthContext );
+  const { register, existUser } = useContext( AuthContext );
 
   const { enqueueSnackbar } = useSnackbar();
 
@@ -41,6 +42,11 @@ export const RegisterPage = () => {
     type: '',
     error: false,
   });
+
+  const [ ErrorExist, setErrorExist ] = useState({
+    type: '',
+    error: false,
+  });
   
   const onHandleRegister = () => {
 
@@ -53,7 +59,7 @@ export const RegisterPage = () => {
       setErrorName({ type: '', error: false });
     }
 
-    if (!regex.test(password)) {
+    if ( !validatePassword( password ) ) {
       setErrorPassword({ type: 'La contraseña debe tener mínimo 8 caracteres, al menos una mayúscula, una minúscula, un número y un carácter especial', error: true });
       valid = false;
     } else {
@@ -65,6 +71,14 @@ export const RegisterPage = () => {
       valid = false;
     } else {
       setErrorPasswordRepeat({ type: '', error: false });
+    }
+
+    if ( existUser( name ) ){
+      setErrorExist({ type: 'El usuario ya se encuentra registrado', error: true });
+      valid = false;
+    } else {
+      setErrorExist({ type: '', error: false });
+
     }
 
     if( valid ){
@@ -104,8 +118,8 @@ export const RegisterPage = () => {
           {errorName.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}} >{ errorName.type }</Alert>}
           {errorPassword.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ errorPassword.type }</Alert>}
           {errorPasswordRepeat.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ errorPasswordRepeat.type }</Alert>}
+          {ErrorExist.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ ErrorExist.type }</Alert>}
         </Grid2>
-
       </AuthLayout>
     </>
   )

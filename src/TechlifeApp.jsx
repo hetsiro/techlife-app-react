@@ -7,12 +7,12 @@ import { SnackbarProvider } from 'notistack';
 
 export const TechlifeApp = () => {
 
-  const { users, activeUser, login, logout, register } = UserContext();
+  const { users, activeUser, login, logout, existUser, register } = UserContext();
   
   return (
     <AppTheme>
       <CssBaseline />
-        <AuthContext.Provider value={{ users, activeUser, login, logout, register }}>
+        <AuthContext.Provider value={{ users, activeUser, login, logout, existUser, register }}>
         <SnackbarProvider maxSnack={3}>
           <AppRouter />
         </SnackbarProvider>

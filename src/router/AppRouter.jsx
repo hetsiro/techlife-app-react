@@ -5,6 +5,7 @@ import { PrivateRoute } from "./PrivateRoute"
 import { PublicRoute } from "./PublicRoute"
 import { LoginPage } from "../auth/pages/LoginPage"
 import { RegisterPage } from "../auth/pages/RegisterPage"
+import { RecoverPage } from "../auth/pages/RecoverPage"
 
 
 export const AppRouter = () => {
@@ -17,6 +18,7 @@ export const AppRouter = () => {
               <Routes>
                 <Route path='login' element={ <LoginPage /> } />
                 <Route path='register' element={ <RegisterPage /> } />
+                <Route path='recoverpassword' element={ <RecoverPage /> } />
               </Routes>
             </>
           </PublicRoute>} />

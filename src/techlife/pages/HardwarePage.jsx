@@ -1,14 +1,14 @@
-import { MediaCardComputers } from '../components/MediaCardComputers';
+import { MediaCardItems } from '../components/MediaCardItems';
 import { getComputersByType } from '../helpers/getComputersByType';
 import { types } from '../types/types';
 
 export const HardwarePage = () => {
 
-  const computers = getComputersByType(types.hardware);
+  const hardware = getComputersByType(types.hardware);
 
   return (
     <>
-      <MediaCardComputers computers={ computers } />
+      <MediaCardItems items={ hardware } />
     </>
   )
 }
