@@ -7,8 +7,49 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Chip, Divider } from '@mui/material';
 import BasicModal from './BasicModal';
+import { getItemById } from '../../src/techlife/helpers/getItemById';
+import { useContext } from 'react';
+import { TechlifeContext } from '../../src/techlife/context/techlifeContext';
 
-export default function MediaCard({ id, name, specs, brand, type }) {
+export default function MediaCard({ id, name, specs, brand, type, price }) {
+
+
+  const { setCart, setCartCount } = useContext( TechlifeContext )
+
+  const onHandleAddToCart = () => {
+
+    let newCart = JSON.parse(localStorage.getItem('cart')) || [];
+    const item = getItemById(id);
+
+    if(newCart.length === 0){
+      newCart = [{...item, cant: 1}];
+      setCart(newCart)
+      localStorage.setItem('cart',JSON.stringify( newCart ));
+    }
+
+    else {
+      const itemFound = newCart.find((itemCart) => (itemCart.id === id));
+
+      if(itemFound){
+        itemFound.cant++;
+      }
+
+      else {
+        newCart = [ ...newCart, { ...item, cant: 1 } ]
+      }
+
+      setCart(newCart);
+      localStorage.setItem('cart',JSON.stringify( newCart ));
+    }
+
+    const cant = newCart.reduce((acumulador, cartItem) => {
+      acumulador += cartItem.cant;
+      return acumulador;
+    },0)
+
+    setCartCount(cant);
+
+  }
 
   return (
     <Card
@@ -45,10 +86,11 @@ export default function MediaCard({ id, name, specs, brand, type }) {
             <Chip label="Specs" size="small" />
           </Divider>
           <Typography 
-            variant="body1"
+            variant="h6"
+            color='primary.main'
             textAlign='center'
           >
-          {specs}
+          ${price} USD
           </Typography>
       </CardContent>
       <CardActions sx={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
@@ -58,6 +100,7 @@ export default function MediaCard({ id, name, specs, brand, type }) {
           variant='contained'
           size="small"
           fullWidth
+          onClick={ onHandleAddToCart }
         >Add to cart</Button>
       </CardActions>
     </Card>

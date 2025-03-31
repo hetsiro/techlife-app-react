@@ -16,12 +16,21 @@ import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { AuthContext } from '../../src/auth/context/AuthContext';
 import { Grid2 } from '@mui/material';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Badge from '@mui/material/Badge';
+import { TechlifeContext } from '../../src/techlife/context/techlifeContext';
+import { DrawerCart } from "./DrawerCart";
+import { useState } from 'react';
 
 
 const pages = ['hardware', 'computers', 'search'];
 const settings = ['Profile', 'Cart', 'Logout'];
 
 function ResponsiveAppBar() {
+
+  const { cartCount } = useContext( TechlifeContext );
+
+  const [open, setOpen] = useState(false);
 
   const activeUser = JSON.parse(localStorage.getItem('activeUser'));
 
@@ -65,6 +74,10 @@ function ResponsiveAppBar() {
     }
   };
 
+  const onHandleCart = () => {
+    setOpen(true);
+  }
+
   return (
     <AppBar position="static">
       <Container maxWidth="md">
@@ -74,7 +87,6 @@ function ResponsiveAppBar() {
             variant="h6"
             noWrap
             component="a"
-            // href="/"
             onClick={ () => navigate('/') }
             sx={{
               mr: 2,
@@ -155,7 +167,7 @@ function ResponsiveAppBar() {
             ))}
           </Box>
           <Grid2 container justifyContent='center' alignItems='center' gap={2} sx={{ flexGrow: 0 }} >
-          <Typography variant='h6' sx={{ textAlign: 'center' }}>{ activeUser.name }</Typography>
+          <Typography variant='h6' sx={{ textAlign: 'center' }}>{ activeUser?.name }</Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
@@ -183,6 +195,12 @@ function ResponsiveAppBar() {
                 </MenuItem>
               ))}
             </Menu>
+            <DrawerCart open={ open } setOpen={ setOpen }  ></DrawerCart>
+            <IconButton color='inherit' onClick={ onHandleCart }>
+              <Badge badgeContent={ cartCount } color="secondary">
+                <ShoppingCartIcon fontSize='large' />
+              </Badge>
+            </IconButton>
           </Grid2>
         </Toolbar>
       </Container>
