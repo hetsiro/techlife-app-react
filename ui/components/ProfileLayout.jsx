@@ -28,7 +28,6 @@ const ProfileLayout = () => {
         direction='column'
         justifyContent='center'
         alignItems='center'
-        height='auto'
         pt={2}
         size={3}
         borderRadius={4}
@@ -40,6 +39,7 @@ const ProfileLayout = () => {
           direction='column'
           justifyContent='center'
           alignItems='center'
+          width='100%'
           >
           <Avatar sx={{ width: 80, height: 80, marginBottom: 2 }} alt="Perfil" src={activeUser.avatar} />
           <Typography variant="h6">{activeUser.name}</Typography>

@@ -6,7 +6,7 @@ import ImageUploader from '../../../ui/components/ImageUploader';
 
 export const ProfileEdit = () => {
 
-  const { activeUser, setActiveUser } = useContext( AuthContext )
+  const { activeUser, updateAvatar } = useContext( AuthContext )
   const [ avatar, setAvatar ] = useState(null)
   const users = JSON.parse(localStorage.getItem('users'));
   
@@ -23,7 +23,7 @@ export const ProfileEdit = () => {
       userEdited.name = name;
       userEdited.password = password;
       userEdited.avatar = avatar;
-      setActiveUser(userEdited);
+      updateAvatar( userEdited );
       localStorage.setItem('users', JSON.stringify(users));
       localStorage.setItem('activeUser', JSON.stringify(userEdited));
     }

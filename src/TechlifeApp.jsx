@@ -9,13 +9,13 @@ import { TechlifeContext } from "./techlife/context/techlifeContext"
 
 export const TechlifeApp = () => {
 
-  const { users, activeUser, setActiveUser, login, logout, existUser, register } = UserContext();
+  const { activeUser, updateAvatar, login, logout, existUser, register } = UserContext();
   const { cartCount, setCartCount, cart, setCart } = useTechlifeContext();
   
   return (
     <AppTheme>
       <CssBaseline />
-        <AuthContext.Provider value={{ users, activeUser, setActiveUser, login, logout, existUser, register }}>
+        <AuthContext.Provider value={{ activeUser, updateAvatar, login, logout, existUser, register }}>
           <TechlifeContext.Provider value={{ cartCount, setCartCount, cart, setCart }}>
             <SnackbarProvider maxSnack={3}>
               <AppRouter />

@@ -2,12 +2,14 @@ import { Grid2, Typography } from "@mui/material";
 import { HomeLayout } from "../layout/HomeLayout";
 import MediaCardHome from "../../../ui/components/MediaCardHome"
 import { items } from "../data/items";
+import { useContext } from "react";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 
 
 export const HomePage = () => {
 
-  const activeUser = JSON.parse(localStorage.getItem('activeUser'));
+  const { activeUser } = useContext( AuthContext )
 
   const hardware = items[0]
   const computer = items[(items.length) - 1]
@@ -28,7 +30,8 @@ export const HomePage = () => {
             borderRadius: 4,
           }}>
 
-            <Typography variant="h6">Welcome { activeUser.name } </Typography>
+            <Typography variant="h6">Welcome </Typography>
+            <Typography variant="h6" fontSize={30} color="primary.main">{ activeUser.name }!</Typography>
 
             <Grid2 
               container
