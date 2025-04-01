@@ -1,8 +1,9 @@
+import { useState } from "react";
 
 export const UserContext = () => {
 
     let users = [];
-    let activeUser = {};
+    const [ activeUser, setActiveUser ] = useState(JSON.parse(localStorage.getItem('activeUser')) || {})
 
     const login = ( newUser ) => {
 
@@ -10,8 +11,8 @@ export const UserContext = () => {
 
         return users.some(( user ) => {
             if(( user.name === newUser.name ) && ( user.password === newUser.password )) {
-                activeUser = newUser;
-                localStorage.setItem('activeUser', JSON.stringify(activeUser) );
+                setActiveUser({isLogged: true, ...user});
+                localStorage.setItem('activeUser', JSON.stringify({isLogged: true, ...user}) );
                 return true;
             }
             return false;
@@ -44,10 +45,9 @@ export const UserContext = () => {
     }
 
     const logout = () => {
-
         localStorage.removeItem('activeUser');
-        
+        setActiveUser({});
     }
 
-  return { users, activeUser, login, register, existUser, logout };
+  return { users, activeUser, setActiveUser, login, register, existUser, logout };
 }

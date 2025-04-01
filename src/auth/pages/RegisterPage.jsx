@@ -8,6 +8,7 @@ import { Alert, Button, Grid2, TextField, Typography } from '@mui/material'
 import FaceIcon from '@mui/icons-material/Face';
 import { useSnackbar } from 'notistack';
 import { validateForms } from '../helpers/validators';
+import ImageUploader from '../../../ui/components/ImageUploader';
 
 
 export const RegisterPage = () => {
@@ -28,6 +29,8 @@ export const RegisterPage = () => {
     passwordRepeat: '',
   })
 
+  const [ avatar, setAvatar ] = useState(null)
+
   const [ errorName, setErrorName ] = useState({
     type: '',
     error: false,
@@ -44,6 +47,11 @@ export const RegisterPage = () => {
   });
 
   const [ ErrorExist, setErrorExist ] = useState({
+    type: '',
+    error: false,
+  });
+
+  const [ errorImage, setErrorImage ] = useState({
     type: '',
     error: false,
   });
@@ -79,12 +87,20 @@ export const RegisterPage = () => {
     } else {
       setErrorExist({ type: '', error: false });
 
+      if(avatar === null){
+        setErrorImage({ type: 'La imagen aún no carga...', error: true })
+        valid=false
+      } else {
+        setErrorImage({ type: '', error: false })
+      }
+
     }
 
     if( valid ){
       const newUser = {
         name,
         password,
+        avatar,
       }
 
       enqueueSnackbar('Registrado con éxito!', { variant: 'success' })
@@ -109,6 +125,7 @@ export const RegisterPage = () => {
         <TextField name="name" type='text' label="Name" variant="outlined" sx={{ width: '60%' }} autoComplete="on" onChange={ onInputChange } inputRef={ nameRef } error={ errorName.error } />
         <TextField name="password" type='password' label="Password" variant="outlined" sx={{ width: '60%' }} autoComplete="on" onChange={ onInputChange } inputRef={ passwordRef } error={ errorPassword.error } />
         <TextField name="passwordRepeat" type='password' label="Repeat Password" variant="outlined" sx={{ width: '60%' }} autoComplete="on" onChange={ onInputChange } inputRef={ passwordRepeatRef } error={ errorPasswordRepeat.error } />
+        <ImageUploader avatar={ avatar } setAvatar={ setAvatar } />
         <Button variant="contained" sx={{ width: '60%' }} onClick={ onHandleRegister } >
           Register
         </Button>
@@ -119,6 +136,7 @@ export const RegisterPage = () => {
           {errorPassword.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ errorPassword.type }</Alert>}
           {errorPasswordRepeat.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ errorPasswordRepeat.type }</Alert>}
           {ErrorExist.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ ErrorExist.type }</Alert>}
+          {errorImage.error && <Alert variant="filled" severity="error" sx={{ width: '100%'}}>{ errorImage.type }</Alert>}
         </Grid2>
       </AuthLayout>
     </>

@@ -23,7 +23,7 @@ export const DrawerCart = ({ open, setOpen }) => {
           alignItems='center'
           width='450px'
           spacing={2}
-          pt={4}
+          py={4}
           px={4}
           flexGrow={1}
 
@@ -34,7 +34,7 @@ export const DrawerCart = ({ open, setOpen }) => {
             alignItems='center'
             backgroundColor='primary.main'
             px={3}
-            borderRadius={5}
+            width='100%'
           >
             <Typography variant="h6" fontSize={30} color="white">Cart</Typography>
           </Grid2>
@@ -55,13 +55,22 @@ export const DrawerCart = ({ open, setOpen }) => {
               )
             })}
           </Grid2>
-          <Typography variant="h6" fontSize={30} color="primary.main" 
-          sx={{ mt: 'auto', pb: 5  }}
-          >Total: ${cart.reduce((acumulador, cartItem) => {
-            acumulador += cartItem.cant * cartItem.price
-            return acumulador;
-          }, 0)} USD
-          </Typography>
+          <Grid2
+            container
+            justifyContent='center'
+            alignItems='center'
+            backgroundColor='primary.main'
+            width='100%'
+            mt='auto'
+            py={2}
+          >
+            <Typography variant="h6" fontSize={30} color="white"
+            >Total: ${cart.reduce((acumulador, cartItem) => {
+              acumulador += cartItem.cant * cartItem.price
+              return acumulador;
+            }, 0)} USD
+            </Typography>
+          </Grid2>
         </Grid2>
       </Drawer>
     </>

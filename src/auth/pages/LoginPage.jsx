@@ -25,9 +25,8 @@ export const LoginPage = () => {
   const onHandleLogin = () => {
 
       const user = {
-        isLogged: true,
         name,
-        password
+        password,
       }
 
       if( login( user ) ){

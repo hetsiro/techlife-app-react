@@ -24,18 +24,14 @@ import { useState } from 'react';
 
 
 const pages = ['hardware', 'computers', 'search'];
-const settings = ['Profile', 'Cart', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function ResponsiveAppBar() {
 
   const { cartCount } = useContext( TechlifeContext );
+  const { activeUser, logout } = useContext( AuthContext )
 
   const [open, setOpen] = useState(false);
-
-  const activeUser = JSON.parse(localStorage.getItem('activeUser'));
-
-  const { logout } = useContext( AuthContext )
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -57,11 +53,7 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
     switch (e.target.textContent) {
       case 'Profile':
-        console.log('Enviando a perfil...');
-        return;
-      
-      case 'Cart':
-        console.log('Enviando a carrito...');
+        navigate('/profile');
         return;
 
       case 'Logout':
@@ -170,7 +162,7 @@ function ResponsiveAppBar() {
           <Typography variant='h6' sx={{ textAlign: 'center' }}>{ activeUser?.name }</Typography>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Remy Sharp" src={activeUser.avatar} />
               </IconButton>
             </Tooltip>
             <Menu

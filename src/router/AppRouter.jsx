@@ -6,6 +6,7 @@ import { PublicRoute } from "./PublicRoute"
 import { LoginPage } from "../auth/pages/LoginPage"
 import { RegisterPage } from "../auth/pages/RegisterPage"
 import { RecoverPage } from "../auth/pages/RecoverPage"
+import { ProfilePage } from "../techlife/pages/ProfilePage"
 
 
 export const AppRouter = () => {
@@ -34,6 +35,7 @@ export const AppRouter = () => {
                   <Route path='hardware' element={<HardwarePage />} />
                   <Route path='computers' element={<ComputersPage />} />
                   <Route path='search' element={<SearchPage />} />
+                  <Route path='profile' element={<ProfilePage />} />
                 </Routes>
               </div>
             </>
