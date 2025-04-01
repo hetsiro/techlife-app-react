@@ -63,7 +63,7 @@ export default function MediaCard({ id, name, specs, brand, type, price }) {
         sx={{
           height: 350,
         }}
-        image={`/assets/items/${id}.png`}
+        image={`./assets/items/${id}.png`}
       />
       <CardContent>
         <Typography
