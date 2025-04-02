@@ -60,7 +60,7 @@ export const LoginPage = () => {
             </Button>
             <Button onClick={ onHandleRegisterPage } sx={{ width: '60%' }} >Register</Button>
             <Button onClick={ onHandleRecoverPage } sx={{ width: '60%' }} >Password Recovery</Button>
-            { (invalid) && <Alert variant="filled" severity="error" sx={{ width: '60%'}} >Usuario o contraseña incorrecta</Alert> }
+            { (invalid) && <Alert variant="standard" severity="error" sx={{ width: '60%'}} >Usuario o contraseña incorrecta</Alert> }
         </AuthLayout>
     </>
   );

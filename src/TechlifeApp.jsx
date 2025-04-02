@@ -1,11 +1,9 @@
 import { CssBaseline } from "@mui/material"
 import { AppRouter } from "./router/AppRouter"
 import { AppTheme } from "./theme/AppTheme"
-import { UserContext } from "./auth/context/UserContext"
-import { AuthContext } from "./auth/context/AuthContext"
 import { SnackbarProvider } from 'notistack';
-import { useTechlifeContext } from "./techlife/context/useTechlifeContext"
-import { TechlifeContext } from "./techlife/context/techlifeContext"
+import { TechlifeContext, useTechlifeContext } from "./techlife/context"
+import { AuthContext, UserContext } from "./auth/context";
 
 export const TechlifeApp = () => {
 

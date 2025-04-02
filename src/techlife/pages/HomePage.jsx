@@ -1,9 +1,9 @@
+import { useContext } from "react";
 import { Grid2, Typography } from "@mui/material";
 import { HomeLayout } from "../layout/HomeLayout";
-import MediaCardHome from "../../../ui/components/MediaCardHome"
 import { items } from "../data/items";
-import { useContext } from "react";
 import { AuthContext } from "../../auth/context/AuthContext";
+import MediaCardHome from "../../ui/components/MediaCardHome";
 
 
 

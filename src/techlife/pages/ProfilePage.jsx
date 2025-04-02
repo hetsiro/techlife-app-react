@@ -1,6 +1,6 @@
 import { Grid2 } from "@mui/material"
 import { HomeLayout } from "../layout/HomeLayout"
-import ProfileLayout from "../../../ui/components/ProfileLayout"
+import { ProfileLayout } from "../../ui"
 
 
 export const ProfilePage = () => {

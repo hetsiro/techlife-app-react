@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { useNavigate } from 'react-router';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,21 +15,18 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import ComputerIcon from '@mui/icons-material/Computer';
-import { useNavigate } from 'react-router';
-import { useContext } from 'react';
-import { AuthContext } from '../../src/auth/context/AuthContext';
-import { Grid2 } from '@mui/material';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Grid2 } from '@mui/material';
 import Badge from '@mui/material/Badge';
-import { TechlifeContext } from '../../src/techlife/context/techlifeContext';
-import { DrawerCart } from "./DrawerCart";
-import { useState } from 'react';
+import { AuthContext } from '../../auth/context';
+import { TechlifeContext } from '../../techlife/context';
+import { DrawerCart } from './DrawerCart';
 
 
 const pages = ['hardware', 'computers', 'search'];
 const settings = ['Profile', 'Logout'];
 
-function ResponsiveAppBar() {
+export function ResponsiveAppBar() {
 
   const { cartCount } = useContext( TechlifeContext );
   const { activeUser, logout } = useContext( AuthContext )
@@ -199,4 +199,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;

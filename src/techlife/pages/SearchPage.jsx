@@ -1,10 +1,8 @@
 import { alpha, Grid2, TextField, Typography } from "@mui/material";
-// import ComboBox from "../../../ui/components/ComboBox"
-// import { getItemNames } from "../helpers/getItemNames"
 import { theme } from "../../theme/theme";
 import { useForm } from "../hooks/useForm";
-import { getItemsByName } from "../helpers/getItemsByName";
-import MediaCard from "../../../ui/components/MediaCard";
+import { getItemsByName } from "../helpers";
+import MediaCard from "../../ui/components/MediaCard";
 
 export const SearchPage = () => {
 

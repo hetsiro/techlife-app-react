@@ -1,12 +1,8 @@
 import { Navigate, Route, Routes } from "react-router"
-import { ComputersPage, HardwarePage, HomePage, SearchPage } from "../techlife/pages"
-import ResponsiveAppBar from "../../ui/components/ResponsiveAppBar"
-import { PrivateRoute } from "./PrivateRoute"
-import { PublicRoute } from "./PublicRoute"
-import { LoginPage } from "../auth/pages/LoginPage"
-import { RegisterPage } from "../auth/pages/RegisterPage"
-import { RecoverPage } from "../auth/pages/RecoverPage"
-import { ProfilePage } from "../techlife/pages/ProfilePage"
+import { PublicRoute, PrivateRoute } from "./"
+import { LoginPage, RecoverPage, RegisterPage } from "../auth/pages"
+import { ComputersPage, HardwarePage, HomePage, ProfilePage, SearchPage } from "../techlife/pages"
+import { ResponsiveAppBar } from "../ui"
 
 
 export const AppRouter = () => {

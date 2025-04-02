@@ -7,9 +7,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Chip, Divider } from '@mui/material';
 import BasicModal from './BasicModal';
-import { getItemById } from '../../src/techlife/helpers/getItemById';
 import { useContext } from 'react';
-import { TechlifeContext } from '../../src/techlife/context/techlifeContext';
+import { getItemById } from '../../techlife/helpers';
+import { TechlifeContext } from '../../techlife/context';
 
 export default function MediaCard({ id, name, specs, brand, type, price }) {
 

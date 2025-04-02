@@ -1,8 +1,8 @@
 import { Divider, Drawer, Grid2, Typography } from "@mui/material";
-import { MediaCart } from "../../src/techlife/components/MediaCart";
 import { Fragment, useContext } from "react";
-import { TechlifeContext } from "../../src/techlife/context/techlifeContext";
-import { EmptyCart } from "./EmptyCart";
+import { MediaCart } from "../../techlife/components";
+import { TechlifeContext } from "../../techlife/context";
+import { EmptyCart } from "./";
 
 export const DrawerCart = ({ open, setOpen }) => {
 
