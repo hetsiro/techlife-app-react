@@ -3,6 +3,7 @@ import { theme } from "../../theme/theme";
 import { useForm } from "../hooks/useForm";
 import { getItemsByName } from "../helpers";
 import MediaCard from "../../ui/components/MediaCard";
+import { HomeLayout } from "../layout/HomeLayout";
 
 export const SearchPage = () => {
 
@@ -14,36 +15,21 @@ export const SearchPage = () => {
 
   return (
     <>
-      <Grid2
-        container
-        direction="row"
-        spacing={2}
-        sx={{
-          justifyContent: 'center',
-          alignItems: 'center',
-          backgroundColor: alpha(theme.palette.primary.main, 0.5),
-          minHeight: { xs: 'calc(100vh - 56px)', md: 'calc(100vh - 64px)' },
-          padding: theme.spacing(2, 2)
-        }}
-      >
+      <HomeLayout>
         <Grid2
-          size={10}
+        container
+        justifyContent='center'
+        alignItems='center'
+        direction='column'
+        mx={2}
+        py={4}
+        px={2}
           sx={{
             backgroundColor: 'white',
-            boxShadow: 2,
+            boxShadow: 4,
             borderRadius: 4
           }}
         >
-          <Grid2
-            container
-            sx={{
-              height: '100%',
-              flexDirection: 'column',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              padding: theme.spacing(5, 0, 0, 0)
-            }}
-          >
             <Typography
               variant="h4"
               sx={{
@@ -59,7 +45,7 @@ export const SearchPage = () => {
               name="name"
               onChange={onInputChange}
               sx={{
-                width: '60%',
+                width: { xs: '100%', md: '60%'},
               }}
             />
             <Grid2
@@ -80,15 +66,14 @@ export const SearchPage = () => {
                 }))
               }
               {(newItems.length === 0 && <Typography variant="h6" sx={{
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  maxWidth: '250px',
-                }}>No items with:<br /><b>{name}</b> </Typography>)}
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                maxWidth: '250px',
+              }}>No items with:<br /><b>{name}</b> </Typography>)}
             </Grid2>
           </Grid2>
-        </Grid2>
-      </Grid2>
+      </HomeLayout>
 
 
     </>

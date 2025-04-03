@@ -52,19 +52,28 @@ export default function MediaCard({ id, name, specs, brand, type, price }) {
   }
 
   return (
-    <Card
-      sx={{
-        width: {xs : 250, md: 350},
-        padding: 1,
-        boxShadow: 5,
-      }}
-    >
-      <CardMedia
-        sx={{
-          height: {xs : 250, md: 350},
-        }}
-        image={`./assets/items/${id}.png`}
-      />
+<Card
+  sx={{
+    width: '100%',
+    minWidth: 280,      // ✅ mínimo recomendado en mobile
+    maxWidth: 350,      // límite visual para que no se estire demasiado
+    boxShadow: 5,
+    display: 'flex',
+    flexDirection: 'column',
+  }}
+>
+<CardMedia
+    component="img" // ✅ renderiza como <img /> real, más controlable
+    image={`./assets/items/${id}.png`}
+    alt={name}
+    sx={{
+      width: '100%',
+      height: 'auto',        // que se ajuste a su propia proporción
+      maxHeight: 250,        // podés ajustar si querés limitarla
+      objectFit: 'contain',  // no recorta, muestra completa la imagen
+      p: 1,
+    }}
+  />
       <CardContent>
         <Typography
           gutterBottom

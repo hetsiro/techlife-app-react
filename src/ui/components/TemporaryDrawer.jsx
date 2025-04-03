@@ -17,6 +17,7 @@ import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { AuthContext } from '../../auth/context';
 import { Grid2, Typography } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
 
 
 export default function TemporaryDrawer() {
@@ -39,6 +40,17 @@ export default function TemporaryDrawer() {
       <Typography variant='h5' color='white'>Menu</Typography>
     </Grid2>
       <List>
+
+        <ListItem disablePadding>
+          <ListItemButton onClick={ handleNavigate } >
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary='Home' />
+          </ListItemButton>
+        </ListItem>
+
+        <Divider />
 
         <ListItem disablePadding>
           <ListItemButton onClick={ handleNavigate } >
