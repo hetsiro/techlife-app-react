@@ -79,11 +79,13 @@ export const SearchPage = () => {
                   />
                 }))
               }
+              {(newItems.length === 0 && <Typography variant="h6" sx={{
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  maxWidth: '250px',
+                }}>No items with:<br /><b>{name}</b> </Typography>)}
             </Grid2>
-            {/* <ComboBox 
-                  name="name"
-                  items={ items } 
-                /> */}
           </Grid2>
         </Grid2>
       </Grid2>

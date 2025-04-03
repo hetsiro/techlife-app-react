@@ -54,14 +54,14 @@ export default function MediaCard({ id, name, specs, brand, type, price }) {
   return (
     <Card
       sx={{
-        width: 350,
+        width: {xs : 250, md: 350},
         padding: 1,
         boxShadow: 5,
       }}
     >
       <CardMedia
         sx={{
-          height: 350,
+          height: {xs : 250, md: 350},
         }}
         image={`./assets/items/${id}.png`}
       />

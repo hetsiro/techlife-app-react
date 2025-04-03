@@ -16,6 +16,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router';
 import { useContext } from 'react';
 import { AuthContext } from '../../auth/context';
+import { Grid2, Typography } from '@mui/material';
 
 
 export default function TemporaryDrawer() {
@@ -33,6 +34,10 @@ export default function TemporaryDrawer() {
 
   return (
     <Box sx={{ width: 250 }} role="presentation">
+    
+    <Grid2 container justifyContent='center' alignItems='center' backgroundColor='primary.main' py={1}>
+      <Typography variant='h5' color='white'>Menu</Typography>
+    </Grid2>
       <List>
 
         <ListItem disablePadding>

@@ -1,4 +1,4 @@
-import { Button, CardMedia, Divider, Grid2, TextField, Typography } from "@mui/material"
+import { Button, CardMedia, Divider, Grid, Grid2, TextField, Typography } from "@mui/material"
 import { useContext, useState } from "react";
 import { TechlifeContext } from "../context";
 
@@ -42,66 +42,52 @@ export const MediaCart = ({ item }) => {
             container
             direction='column'
             justifyContent='center'
-            alignItems='center'
+            alignItems='flex-end'
             width='100%'
-        >
-            <Grid2
-                container
-                direction='row'
-                alignItems='center'
-                wrap="nowrap"
-                gap={2}
-                sx={{
-                    maxWidth: "100%", // Se adapta al padre sin excederlo
-                    width: "100%",
-                }}
-            >
-                <CardMedia
-                    sx={{
-                        height: 100,
-                        width: 100,
-                        flexShrink: 0,
-                    }}
-                    image={`/assets/items/${item.id}.png`}
-                />
-                <Typography variant="button" sx={{ fontSize: { xs: 12, md: 15} }}>
-                    {item.name}
-                </Typography>
-                <TextField
-                    type="number"
-                    value={countValue}
-                    onChange={handleChange}
-                    variant="standard"
-                    inputProps={{
-                        min: 1,
-                        max: 99,
-                        inputMode: 'numeric',
-                        style: { textAlign: 'center' },
-                    }}
-                    sx={{
-                        width: { xs: '80px', sm: '100px' },
-                        '@media (max-width: 600px)': {
-                        '& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
-                            WebkitAppearance: 'none',
-                            margin: 0,
-                        },
-                        '& input[type=number]': {
-                            MozAppearance: 'textfield',
-                        }
-                        }
-                    }}
-                    />
-
-
-
-                <Button
-                    onClick={onHandleDelete}
-                    variant="contained"
-                    sx={{
-                        minWidth: "auto", // Hace que el botón solo ocupe el espacio de la "X"
-                    }}
-                >X
-                </Button>
+        >   
+            <Grid2 container width='100%'>
+                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                    <CardMedia sx={{height: 100, width: 100, flexShrink: 0}} image={`/assets/items/${item.id}.png`}/>
+                </Grid2>
+                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                    <Typography variant="button" sx={{ fontSize: { xs: 12, md: 15} }}>{item.name}</Typography>
+                </Grid2>
+                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                    <TextField
+                        type="number"
+                        value={countValue}
+                        onChange={handleChange}
+                        variant="standard"
+                        inputProps={{
+                            min: 1,
+                            max: 99,
+                            inputMode: 'numeric',
+                            style: { textAlign: 'center' },
+                        }}
+                        sx={{
+                            width: { xs: '80px', sm: '100px' },
+                            '@media (max-width: 600px)': {
+                            '& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
+                                WebkitAppearance: 'none',
+                                margin: 0,
+                            },
+                            '& input[type=number]': {
+                                MozAppearance: 'textfield',
+                            }
+                            }
+                        }}
+                        />
+                </Grid2>
+                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                    <Button
+                        onClick={onHandleDelete}
+                        variant="contained"
+                        sx={{
+                            minWidth: "auto", // Hace que el botón solo ocupe el espacio de la "X"
+                        }}
+                    >X
+                    </Button>
+                </Grid2>
             </Grid2>
             <Typography variant="h6" color="primary.main" >${price} USD</Typography>
         </Grid2>
