@@ -20,13 +20,14 @@ import { Grid2, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 
 
-export default function TemporaryDrawer() {
+export default function TemporaryDrawer({ setOpenDrawer }) {
 
   const navigate = useNavigate();
   const { logout } = useContext( AuthContext )
 
   const handleNavigate = ( event ) => {
     navigate(`/${event.target.textContent}`)
+    setOpenDrawer(false);
   }
 
   const handleLogout = ( ) => {

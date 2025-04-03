@@ -53,7 +53,7 @@ export function ResponsiveAppBar() {
           </Typography>
           <Grid2>
             <Drawer open={openDrawer} anchor='left' onClose={() => setOpenDrawer(false)}  >
-              <TemporaryDrawer />
+              <TemporaryDrawer setOpenDrawer={setOpenDrawer} />
             </Drawer>
           </Grid2>
 
