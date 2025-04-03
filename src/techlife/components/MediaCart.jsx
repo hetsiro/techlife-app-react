@@ -49,7 +49,7 @@ export const MediaCart = ({ item }) => {
                 <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
                     <CardMedia sx={{height: 100, width: 100, flexShrink: 0}} image={`/assets/items/${item.id}.png`}/>
                 </Grid2>
-                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                <Grid2 container alignItems='center' justifyContent='center' size={4} px={2}>
                     <Typography variant="button" sx={{ fontSize: { xs: 12, md: 15} }}>{item.name}</Typography>
                 </Grid2>
                 <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
@@ -78,7 +78,7 @@ export const MediaCart = ({ item }) => {
                         }}
                         />
                 </Grid2>
-                <Grid2 container alignItems='center' justifyContent='center' size={3} px={2}>
+                <Grid2 container alignItems='center' justifyContent='center' size={2} px={2}>
                     <Button
                         onClick={onHandleDelete}
                         variant="contained"
