@@ -8,6 +8,8 @@ export const EmptyCart = () => {
       direction='column'
       justifyContent='center'
       alignItems='center'
+      height='100%'
+      p={4}
   >
       <RemoveShoppingCartIcon sx={{ fontSize: "50px", color: 'red' }} />
       <Typography variant="h6" pt={4}>Oh :( your cart is empty, please add your items</Typography>
