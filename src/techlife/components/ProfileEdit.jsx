@@ -1,4 +1,4 @@
-import { Alert, Button, Grid2, Grow, TextField, Typography } from '@mui/material'
+import { Alert, Button, Grid2, TextField, Typography } from '@mui/material'
 import { useForm } from "../hooks/useForm";
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../auth/context/AuthContext';
@@ -39,16 +39,16 @@ export const ProfileEdit = () => {
   }
 
   return (
-    <Grid2 container justifyContent='center' alignItems='center' py={2} gap={2} width='100%'>
-        <Typography variant="h6" fontSize={50}>Edit profile</Typography>
+      <>
+        <Typography variant="h6">Edit profile</Typography>
         <Grid2 container direction='column' justifyContent='center' alignItems='center' width='100%' gap={2} >
-            <TextField name="name" type='text' label="Name" variant="outlined" sx={{ width: '60%' }} autoComplete="on" onChange={ onInputChange } value={ name } error={errorName.error} />
-            <TextField name="password" type='password' label="Password" variant="outlined" sx={{ width: '60%' }} autoComplete="on" onChange={ onInputChange } value={ password } error={errorPassword.error} />
+            <TextField name="name" type='text' label="Name" variant="outlined" sx={{ width: '100%' }} autoComplete="on" onChange={ onInputChange } value={ name } error={errorName.error} />
+            <TextField name="password" type='password' label="Password" variant="outlined" sx={{ width: '100%' }} autoComplete="on" onChange={ onInputChange } value={ password } error={errorPassword.error} />
             <ImageUploader avatar={ avatar } setAvatar={ setAvatar } />
-            <Button variant='contained' sx={{ width: '60%' }} size='large' onClick={ onHandleEdit } disabled={ !valid } >Save changes</Button>
-            <Alert variant="standard" severity={ errorName.error ? 'error' : 'success' } sx={{ width: '60%'}} >{ errorName.type }</Alert>
-            <Alert variant="standard" severity={ errorPassword.error ? 'error' : 'success' } sx={{ width: '60%'}}>{ errorPassword.type }</Alert>
+            <Button variant='contained' sx={{ width: '100%' }} size='large' onClick={ onHandleEdit } disabled={ !valid } >Save changes</Button>
+            <Alert variant="standard" severity={ errorName.error ? 'error' : 'success' } sx={{ width: '100%' }} >{ errorName.type }</Alert>
+            <Alert variant="standard" severity={ errorPassword.error ? 'error' : 'success' } sx={{ width: '100%' }}>{ errorPassword.type }</Alert>
         </Grid2>
-    </Grid2>
+      </>
   )
 }

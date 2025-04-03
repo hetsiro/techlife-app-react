@@ -1,6 +1,6 @@
 import { Grid2 } from "@mui/material"
 import { HomeLayout } from "../layout/HomeLayout"
-import { ProfileLayout } from "../../ui"
+import { ProfileEdit } from "../components"
 
 
 export const ProfilePage = () => {
@@ -8,13 +8,14 @@ export const ProfilePage = () => {
     <HomeLayout>
       <Grid2
         container
+        direction='column'
         justifyContent='center'
         alignItems='center'
-        backgroundColor='white'
+        size={{ xs: 10, md: 4}}
+        p={4}
         borderRadius={4}
-        size={10}
-        >
-          <ProfileLayout />
+        backgroundColor='white'>
+        <ProfileEdit />
       </Grid2>
     </HomeLayout>
   )

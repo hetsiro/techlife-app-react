@@ -1,43 +1,49 @@
-import { Divider, Drawer, Grid2, Typography } from "@mui/material";
+import { Divider, Drawer, Grid2, IconButton, Typography } from "@mui/material";
 import { Fragment, useContext } from "react";
 import { MediaCart } from "../../techlife/components";
 import { TechlifeContext } from "../../techlife/context";
 import { EmptyCart } from "./";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-export const DrawerCart = ({ open, setOpen }) => {
+export const DrawerCart = ({ open, setOpenCart }) => {
 
   const { cart, cartCount } = useContext(TechlifeContext)
+
+  const handleBack = () => {
+    setOpenCart(false);
+  }
 
   return (
     <>
       <Drawer
         anchor="right"
         open={open}
-        onClose={() => setOpen(false)}
-
+        onClose={() => setOpenCart(false)}
       >
+        <Grid2
+          container
+          justifyContent='center'
+          alignItems='center'
+          backgroundColor='primary.main'
+          px={3}
+          width='100%'
+        >
+          <Grid2 container direction='row'>
+            <IconButton onClick={ handleBack }>
+              <ArrowBackIcon sx={{ color: 'white'}} fontSize="large"/>
+            </IconButton>
+            <Typography variant="h6" fontSize={30} color="white">Cart</Typography>
+          </Grid2>
+        </Grid2>
         <Grid2
           container
           direction='column'
           justifyContent='center'
           alignItems='center'
-          width='450px'
           spacing={2}
-          py={4}
-          px={4}
+          p={4}
           flexGrow={1}
-
         >
-          <Grid2
-            container
-            justifyContent='center'
-            alignItems='center'
-            backgroundColor='primary.main'
-            px={3}
-            width='100%'
-          >
-            <Typography variant="h6" fontSize={30} color="white">Cart</Typography>
-          </Grid2>
           {cartCount === 0 && <EmptyCart />}
           <Grid2
             container
@@ -55,22 +61,22 @@ export const DrawerCart = ({ open, setOpen }) => {
               )
             })}
           </Grid2>
-          <Grid2
-            container
-            justifyContent='center'
-            alignItems='center'
-            backgroundColor='primary.main'
-            width='100%'
-            mt='auto'
-            py={2}
-          >
-            <Typography variant="h6" fontSize={30} color="white"
-            >Total: ${cart.reduce((acumulador, cartItem) => {
-              acumulador += cartItem.cant * cartItem.price
-              return acumulador;
-            }, 0)} USD
-            </Typography>
-          </Grid2>
+        </Grid2>
+        <Grid2
+          container
+          justifyContent='center'
+          alignItems='center'
+          backgroundColor='primary.main'
+          width='100%'
+          mt='auto'
+          py={2}
+        >
+          <Typography variant="h6" fontSize={30} color="white"
+          >Total: ${cart.reduce((acumulador, cartItem) => {
+            acumulador += cartItem.cant * cartItem.price
+            return acumulador;
+          }, 0)} USD
+          </Typography>
         </Grid2>
       </Drawer>
     </>

@@ -34,9 +34,9 @@ import { useState } from "react";
 
   return (
     <>
-        <Grid2 container justifyContent='center' alignItems='center' width='60%'>
-          <Button  component='label' htmlFor="upload-file" variant="text"  fullWidth >Upload avatar</Button>
-          { (isLoading) ? <CircularIndeterminate /> : avatar !== null ? <img src={avatar} alt="Avatar" width={300} /> : null }
+        <Grid2 container justifyContent='center' alignItems='center'>
+          <Button  component='label' htmlFor="upload-file" variant="outlined" sx={{ width: '100%', mb: 2 }} >Upload avatar</Button>
+          { (isLoading) ? <CircularIndeterminate /> : avatar !== null ? <img src={avatar} alt="Avatar" width={150} height='100%' /> : null }
           <input  id="upload-file" type="file"  accept="image/*" onChange={handleImageChange} hidden/>
         </Grid2>
     </>

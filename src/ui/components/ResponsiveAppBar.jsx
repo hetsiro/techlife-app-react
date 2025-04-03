@@ -7,189 +7,75 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import ComputerIcon from '@mui/icons-material/Computer';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Grid2 } from '@mui/material';
+import { Drawer, Grid2 } from '@mui/material';
 import Badge from '@mui/material/Badge';
 import { AuthContext } from '../../auth/context';
 import { TechlifeContext } from '../../techlife/context';
 import { DrawerCart } from './DrawerCart';
+import TemporaryDrawer from './TemporaryDrawer';
 
 
 const pages = ['hardware', 'computers', 'search'];
-const settings = ['Profile', 'Logout'];
 
 export function ResponsiveAppBar() {
 
-  const { cartCount } = useContext( TechlifeContext );
-  const { activeUser, logout } = useContext( AuthContext )
+  const [openDrawer, setOpenDrawer] = React.useState(false);
+  const [openCart, setOpenCart] = useState(false);
 
-  const [open, setOpen] = useState(false);
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = ( event ) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = ( event ) => {
-    setAnchorElUser(event.currentTarget);
-  };
+  const { cartCount } = useContext(TechlifeContext);
+  const { activeUser } = useContext(AuthContext)
 
   const navigate = useNavigate();
 
-  const handleCloseNavMenu = ( e ) => {
-    setAnchorElNav(null);
+  const handleCloseNavMenu = (e) => {
     navigate(`/${e.target.textContent}`);
   };
 
-  const handleCloseUserMenu = ( e ) => {
-    setAnchorElUser(null);
-    switch (e.target.textContent) {
-      case 'Profile':
-        navigate('/profile');
-        return;
-
-      case 'Logout':
-        logout()
-        navigate('/auth/login')
-        return;
-    
-      default:
-        return;
-    }
-  };
-
   const onHandleCart = () => {
-    setOpen(true);
+    setOpenCart(true);
   }
 
   return (
     <AppBar position="static">
       <Container maxWidth="md">
-        <Toolbar disableGutters>
-          <ComputerIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            onClick={ () => navigate('/') }
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'roboto',
-              fontWeight: 700,
-              letterSpacing: '0.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              cursor: "pointer"
-            }}
-          >
+        <Toolbar disableGutters sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <IconButton color='inherit' size='large' onClick={() => setOpenDrawer(true)} >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" component="a" onClick={() => navigate('/')} sx={{ display: { xs: 'none', md: 'flex' }, fontWeight: 900, letterSpacing: '0.2rem', cursor: "pointer" }} >
             TECHLIFE
           </Typography>
+          <Grid2>
+            <Drawer open={openDrawer} anchor='left' onClose={() => setOpenDrawer(false)}  >
+              <TemporaryDrawer />
+            </Drawer>
+          </Grid2>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{ display: { xs: 'block', md: 'none' } }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={(e) => handleCloseNavMenu(e)}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <ComputerIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.1rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            TECHLIFE
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex', justifyContent: 'center', alignItems: 'center' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ color: 'white', display: 'block' }}
-              >
+              <Button key={page} onClick={handleCloseNavMenu} sx={{ color: 'white', display: 'block' }}>
                 {page}
               </Button>
             ))}
           </Box>
-          <Grid2 container justifyContent='center' alignItems='center' gap={2} sx={{ flexGrow: 0 }} >
-          <Typography variant='h6' sx={{ textAlign: 'center' }}>{ activeUser?.name }</Typography>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <Grid2 container justifyContent='center' alignItems='center' gap={2}>
+            <Typography variant='h6' sx={{ textAlign: 'center', cursor: 'pointer' }} onClick={() => setOpenDrawer(true)}>
+              {activeUser?.name}
+            </Typography>
+            <Tooltip title="Settings" onClick={() => setOpenDrawer(true)}>
+              <IconButton onClick={() => setOpenDrawer(true)} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src={activeUser.avatar} />
               </IconButton>
             </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-            <DrawerCart open={ open } setOpen={ setOpen }  ></DrawerCart>
-            <IconButton color='inherit' onClick={ onHandleCart }>
-              <Badge badgeContent={ cartCount } color="secondary">
+            <DrawerCart open={openCart} setOpenCart={setOpenCart} />
+            <IconButton color='inherit' onClick={onHandleCart}>
+              <Badge badgeContent={cartCount} color="secondary">
                 <ShoppingCartIcon fontSize='large' />
               </Badge>
             </IconButton>

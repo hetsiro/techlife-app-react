@@ -21,9 +21,8 @@ export const HomePage = () => {
         <Grid2
           container
           direction="column"
-          size={{ xs: 10, md: 6 }}
           sx={{
-            py: 5,
+            p: 2,
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "white",
@@ -35,7 +34,7 @@ export const HomePage = () => {
 
             <Grid2 
               container
-              direction="row"
+              direction={{ xs:'column', md:'row'}}
               justifyContent='center'
               alignItems='center'
               padding={2}

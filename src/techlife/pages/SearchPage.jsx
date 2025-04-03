@@ -23,7 +23,7 @@ export const SearchPage = () => {
           alignItems: 'center',
           backgroundColor: alpha(theme.palette.primary.main, 0.5),
           minHeight: { xs: 'calc(100vh - 56px)', md: 'calc(100vh - 64px)' },
-          padding: theme.spacing(2, 0)
+          padding: theme.spacing(2, 2)
         }}
       >
         <Grid2

@@ -1,13 +1,12 @@
 import { Button, CardMedia, Divider, Grid2, TextField, Typography } from "@mui/material"
 import { useContext, useState } from "react";
-import { TechlifeContext } from "../context/techlifeContext";
-
+import { TechlifeContext } from "../context";
 
 export const MediaCart = ({ item }) => {
 
-    const [ countValue, setCountValue ] = useState(item.cant)
-    const { cart, setCart, setCartCount } = useContext( TechlifeContext )
-    const [ price , setPrice ]  = useState(item.price * item.cant);    
+    const [countValue, setCountValue] = useState(item.cant)
+    const { cart, setCart, setCartCount } = useContext(TechlifeContext)
+    const [price, setPrice] = useState(item.price * item.cant);
 
     const onHandleDelete = () => {
 
@@ -30,77 +29,81 @@ export const MediaCart = ({ item }) => {
         const cant = newCart.reduce((acumulador, cartItem) => {
             acumulador += cartItem.cant;
             return acumulador;
-        },0)
-    
+        }, 0)
+
         setCartCount(cant);
         setCart(newCart);
         setPrice(item.price * item.cant)
-        localStorage.setItem('cart',JSON.stringify( newCart ));
+        localStorage.setItem('cart', JSON.stringify(newCart));
     }
 
-  return (
-    <Grid2
-        container
-        direction='column'
-        justifyContent='center'
-        alignItems='center'
-        width='100%'
-    >
+    return (
         <Grid2
             container
-            direction='row'
+            direction='column'
+            justifyContent='center'
             alignItems='center'
-            wrap="nowrap"
-            size={10}
-            gap={2}
-            sx={{
-                maxWidth: "100%", // Se adapta al padre sin excederlo
-                width: "100%",
-            }}
+            width='100%'
         >
-                <CardMedia
+            <Grid2
+                container
+                direction='row'
+                alignItems='center'
+                wrap="nowrap"
+                gap={2}
                 sx={{
-                    height: 100,
-                    width: 100,
-                    flexShrink: 0, // Evita que se reduzca dentro del contenedor
+                    maxWidth: "100%", // Se adapta al padre sin excederlo
+                    width: "100%",
                 }}
-                image={`/assets/items/${item.id}.png`}
-                />
-                <Typography variant="button"
+            >
+                <CardMedia
                     sx={{
-                        flexGrow: 1, // Hace que el texto ocupe todo el espacio disponible
-                        textAlign: "right", // Alinea el texto a la derecha
-                        overflow: "hidden",
-                        textOverflow: "ellipsis",
-                        whiteSpace: "nowrap"
+                        height: 100,
+                        width: 100,
+                        flexShrink: 0,
                     }}
-                >
-                { item.name }
+                    image={`/assets/items/${item.id}.png`}
+                />
+                <Typography variant="button" sx={{ fontSize: { xs: 12, md: 15} }}>
+                    {item.name}
                 </Typography>
                 <TextField
                     type="number"
                     value={countValue}
                     onChange={handleChange}
-                    inputProps={{
-                        min: 1, // Evita valores negativos
-                        max: 99
-                    }}
                     variant="standard"
-                    sx={{ minWidth: '50px',
-                        input: { textAlign: 'center' }
+                    inputProps={{
+                        min: 1,
+                        max: 99,
+                        inputMode: 'numeric',
+                        style: { textAlign: 'center' },
                     }}
-                />
+                    sx={{
+                        width: { xs: '80px', sm: '100px' },
+                        '@media (max-width: 600px)': {
+                        '& input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button': {
+                            WebkitAppearance: 'none',
+                            margin: 0,
+                        },
+                        '& input[type=number]': {
+                            MozAppearance: 'textfield',
+                        }
+                        }
+                    }}
+                    />
 
-                <Button 
-                    onClick={ onHandleDelete }
+
+
+                <Button
+                    onClick={onHandleDelete}
                     variant="contained"
                     sx={{
                         minWidth: "auto", // Hace que el botón solo ocupe el espacio de la "X"
-                        }}
-                    >X
+                    }}
+                >X
                 </Button>
+            </Grid2>
+            <Typography variant="h6" color="primary.main" >${price} USD</Typography>
         </Grid2>
-        <Typography variant="h6" color="primary.main" >${price} USD</Typography>
-    </Grid2>
-  )
+    )
 }
